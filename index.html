@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر ظفار للفضيات والتحف والمرجان</title>
+    <style>
+        :root {
+            --silver: #c0c0c0;
+            --antique: #cd853f;
+            --coral: #ff7f50;
+            --other: #9370db;
+            --bg-dark: #0f0f0f;
+            --bg-card: #1a1a1a;
+            --text: #fff;
+            --text-muted: #aaa;
+            --radius: 16px;
+            --transition: 0.3s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            direction: rtl;
+        }
+       .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-bottom: 2px solid #333;
+        }
+       .header h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, #c9a050, #f0d78c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+       .header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+       .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 30px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+       .category-card {
+            border-radius: var(--radius);
+            padding: 20px;
+            min-height: 400px;
+            transition: var(--transition);
+        }
+       .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+       .category-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+       .category-header h2 {
+            font-size: 1.3rem;
+        }
+       .category-header.icon {
+            font-size: 1.5rem;
+        }
+        /* ألوان الأقسام */
+       .silver { background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%); color: #000; }
+       .antique { background: linear-gradient(135deg, #cd853f 0%, #deb887 100%); color: #000; }
+       .coral { background: linear-gradient(135deg, #ff7f50 0%, #ffa07a 100%); color: #000; }
+       .other { background: linear-gradient(135deg, #9370db 0%, #b19cd9 100%); color: #000; }
+
+       .products-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+       .product-item {
+            background: rgba(255,255,255,0.9);
+            color: #000;
+            padding: 12px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+       .product-item:hover {
+            background: #fff;
+            transform: translateX(-5px);
+        }
+       .product-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+       .product-price {
+            font-weight: 700;
+            color: #d4a843;
+        }
+       .btn-whatsapp {
+            background: #25d366;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+       .btn-whatsapp:hover {
+            background: #1ebc58;
+        }
+       .admin-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: #c9a050;
+            color: #000;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(201,160,80,0.4);
+        }
+       .admin-panel {
+            position: fixed;
+            bottom: 90px;
+            left: 20px;
+            width: 350px;
+            max-width: 90vw;
+            background: var(--bg-card);
+            border: 2px solid #c9a050;
+            border-radius: var(--radius);
+            padding: 20px;
+            display: none;
+        }
+       .admin-panel.active { display: block; }
+       .admin-panel input,.admin-panel select,.admin-panel textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #0f0f0f;
+            color: #fff;
+        }
+       .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background: #c9a050;
+            color: #000;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+           .categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>متجر ظفار للفضيات والتحف والمرجان</h1>
+        <p>أصالة الماضي.. وبريق الحاضر ✨</p>
+    </header>
+
+    <main class="categories-grid" id="categoriesGrid">
+        <!-- الأقسام تتعبأ تلقائياً -->
+    </main>
+
+    <!-- لوحة التحكم -->
+    <button class="admin-btn" onclick="toggleAdmin()">⚙️</button>
+    <div class="admin-panel" id="adminPanel">
+        <h3 style="margin-bottom: 15px; color: #c9a050;">إضافة منتج</h3>
+        <input type="text" id="prodName" placeholder="اسم المنتج" required>
+        <select id="prodCategory" required>
+            <option value="">اختر القسم</option>
+            <option value="silver">فضيات</option>
+            <option value="antique">تحف</option>
+            <option value="coral">مرجان</option>
+            <option value="other">أخرى</option>
+        </select>
+        <input type="text" id="prodPrice" placeholder="السعر">
+        <textarea id="prodDesc" placeholder="الوصف" rows="2"></textarea>
+        <button class="btn-submit" onclick="addProduct()">➕ إضافة</button>
+    </div>
+
+    <script>
+        const WHATSAPP_NUMBER = '968774201299';
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+
+        const categories = {
+            silver: { name: 'الفضيات', icon: '💍', class: 'silver' },
+            antique: { name: 'التحف', icon: '🏺', class: 'antique' },
+            coral: { name: 'المرجان', icon: '🪸', class: 'coral' },
+            other: { name: 'أخرى', icon: '📦', class: 'other' }
+        };
+
+        function renderCategories() {
+            const grid = document.getElementById('categoriesGrid');
+            grid.innerHTML = '';
+
+            Object.keys(categories).forEach(key => {
+                const cat = categories[key];
+                const catProducts = products.filter(p => p.category === key);
+
+                const card = document.createElement('div');
+                card.className = `category-card ${cat.class}`;
+                card.innerHTML = `
+                    <div class="category-header">
+                        <span class="icon">${cat.icon}</span>
+                        <h2>${cat.name} <span style="font-size: 0.9rem; opacity: 0.7;">(${catProducts.length})</span></h2>
+                    </div>
+                    <div class="products-list">
+                        ${catProducts.length === 0? '<p style="text-align:center; opacity:0.6;">لا يوجد منتجات بعد</p>' :
+                        catProducts.map(p => `
+                            <div class="product-item">
+                                <div>
+                                    <div class="product-name">${p.name}</div>
+                                    <div class="product-price">${p.price? p.price + ' OMR' : 'السعر عند الطلب'}</div>
+                                </div>
+                                <a href="https://wa.me/${WHATSAPP_NUMBER}?text=مرحبا، مهتم بمنتج: ${p.name}" target="_blank" class="btn-whatsapp">
+                                    💬 واتساب
+                                </a>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function addProduct() {
+            const name = document.getElementById('prodName').value.trim();
+            const category = document.getElementById('prodCategory').value;
+            const price = document.getElementById('prodPrice').value.trim();
+            const desc = document.getElementById('prodDesc').value.trim();
+
+            if (!name ||!category) {
+                alert('املأ اسم المنتج والقسم');
+                return;
+            }
+
+            products.push({ name, category, price, desc, id: Date.now() });
+            localStorage.setItem('products', JSON.stringify(products));
+
+            document.getElementById('prodName').value = '';
+            document.getElementById('prodPrice').value = '';
+            document.getElementById('prodDesc').value = '';
+            document.getElementById('prodCategory').value = '';
+
+            renderCategories();
+            alert('تمت الإضافة بنجاح!');
+        }
+
+        function toggleAdmin() {
+            document.getElementById('adminPanel').classList.toggle('active');
+        }
+
+        renderCategories();
+    </script>
+</body>
+  </html>
